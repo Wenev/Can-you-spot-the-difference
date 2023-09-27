@@ -38,23 +38,42 @@ function generate_base_color() {
   return [red, green, blue];
 }
 
-function generate_target_color(baseColor, currentLevel) {
-  let [red, green, blue] = baseColor;
-
-  let colorDifficulty = 100;
-
-  // 0 / 1
-  const isUp = Math.floor(Math.random() + 1);
+function change_base_color_part(baseColorPart, colorDifficulty) {
+  const isUp = Math.round(Math.random());
+  const canUp = baseColorPart + colorDifficulty <= 255;
+  const canDown = baseColorPart - colorDifficulty > 0;
 
   if (isUp) {
-    red += colorDifficulty;
-    green += colorDifficulty;
-    blue += colorDifficulty;
+    if (canUp) {
+      return baseColorPart + colorDifficulty;
+    } else {
+      return baseColorPart - colorDifficulty;
+    }
   } else {
-    red -= colorDifficulty;
-    green -= colorDifficulty;
-    blue -= colorDifficulty;
+    if (canDown) {
+      return baseColorPart - colorDifficulty;
+    } else {
+      return baseColorPart + colorDifficulty;
+    }
   }
+}
+
+function generate_target_color(baseColor) {
+  let [red, green, blue] = baseColor;
+
+  // let red = baseColor[0];\y
+  // let green = baseColor[1];
+  // let blue = baseColor[2];
+
+  let colorDifficulty = 110 - 10 * currentLevel;
+  if (colorDifficulty <= 15) {
+    colorDifficulty = 15;
+  }
+
+  // 0 / 1
+  red = change_base_color_part(red, colorDifficulty);
+  green = change_base_color_part(green, colorDifficulty);
+  blue = change_base_color_part(blue, colorDifficulty);
 
   return [red, green, blue];
 }
@@ -208,7 +227,7 @@ function next_level() {
   add_score(bonus);
 
   // todo: increase remaining time
-  
+
   start_level();
 }
 
