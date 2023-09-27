@@ -13,4 +13,6 @@ function render_scoreboard() {}
 function reset_scoreboard() {}
 
 // switches into home page
-function goHome() {}
+function go_home() {
+    window.location.href = "homepage.html";
+}

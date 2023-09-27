@@ -80,6 +80,7 @@ function generate_target_color(baseColor) {
 
 function create_circle_target_html(color) {
   const element = create_circle_html(color);
+
   element.addEventListener("click", () => {
     next_level();
   });
@@ -89,6 +90,7 @@ function create_circle_target_html(color) {
 
 function create_circle_base_html(color) {
   const element = create_circle_html(color);
+
   element.addEventListener("click", () => {
     wrong();
   });
@@ -176,6 +178,7 @@ function render_score() {
 
 function timer() {
   let startTime = Date.now();
+  
   let interval = setInterval(function () {
     let elapsedTime = Date.now() - startTime;
     let timeLeft = currentTimeMs - elapsedTime;
@@ -189,6 +192,7 @@ function timer() {
     if (minute < 10) {
       minute = "0" + minute;
     }
+    
     document.getElementById("minutes").innerHTML = minute;
 
     let second = Math.floor(timeLeft / 1000);
@@ -198,6 +202,7 @@ function timer() {
     if (second < 10) {
       second = "0" + second;
     }
+    
     document.getElementById("seconds").innerHTML = second;
 
     let milli = timeLeft % 1000;
@@ -207,6 +212,7 @@ function timer() {
     if (milli < 10) {
       milli = "0" + milli;
     }
+    
     document.getElementById("millisec").innerHTML = milli;
   }, 50);
 }
@@ -236,7 +242,7 @@ function wrong() {
 }
 
 function end_game() {
-  alert("waktu abis oi");
+  setTimeout(window.location.href = "leaderboard.html", 1000);
 }
 
 function start_level() {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Homepage</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="image">
@@ -26,16 +26,17 @@
               <div class="card glassmorphism-card text-center">
                 <div class="card-body">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" id="username">
                     </div>
                     <div class="mt-3">
-                        <a href="#" class="btn btn-warning">Mulai Bermain</a>
-                        <a href="#" class="btn btn-danger">Lihat Leaderboard</a>
+                        <a href="#" class="btn btn-warning" onclick="start_game()">Mulai Bermain</a>
+                        <a href="#" class="btn btn-danger" onclick="go_leaderboard()">Lihat Leaderboard</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="js/home.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
