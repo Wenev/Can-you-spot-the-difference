@@ -1,0 +1,14 @@
+body {
+    background-image: url(https://images.unsplash.com/photo-1607875333342-4c2ff0022728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2835&q=80);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Style for the glassmorphism card */
+.glassmorphism-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(1rem);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
