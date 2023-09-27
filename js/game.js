@@ -114,6 +114,10 @@ function render_boxes(sideLength, randomPosition, randomColorBase, randomColorTa
   }
 }
 
+function render_level() {
+  const level_element = document.getElementById("level");
+  level_element.innerText = currentLevel;
+}
 /**
  * Score related functions
  */
@@ -204,7 +208,7 @@ function next_level() {
   add_score(bonus);
 
   // todo: increase remaining time
-
+  
   start_level();
 }
 
@@ -217,6 +221,7 @@ function end_game() {
 }
 
 function start_level() {
+  render_level();
   const sideLength = generate_side_length(currentLevel);
   const randomPosition = generate_target_position(sideLength);
 
