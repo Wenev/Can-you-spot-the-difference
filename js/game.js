@@ -1,52 +1,9 @@
 // global vars
-let currentLevel, currentTimeMs, currentScore;
-let game_over = false;
+let currentLevel, currentTimeMs, currentScore, checkPointTime;
 
-function timer() {
-  let startTime = Date.now();
-  let interval = setInterval(function() {
-  let elapsedTime = Date.now() - startTime;
-  let timeLeft = currentTimeMs - elapsedTime
-  if(timeLeft <= 0) {
-    timeLeft = 0;
-    clearInterval(interval);
-    end_game();
-  }
-
-  let minute = Math.floor(timeLeft/(1000*60));
-  if(minute < 10) {
-    minute = "0" + minute;
-  }
-  document.getElementById("minutes").innerHTML = minute;
-
-  let second = Math.floor(timeLeft/1000);
-  if(second >= 60) {
-    second -= minute * 60;
-  }
-  if(second < 10) {
-    second = "0" + second;
-  }
-  document.getElementById("seconds").innerHTML = second;
-
-  let milli = timeLeft % 1000;
-  if(milli < 100) {
-    milli = "0" + milli
-  }
-  if(milli < 10) {
-    milli = "0" + milli
-  }
-  document.getElementById("millisec").innerHTML = milli;
-  }, 50);
-
-}
-
-function win() {
-   currentTimeMs += 3000;
-}
-
-function wrong() {
-  currentTimeMs -= 1500
-}
+/**
+ * Level Generation related Functions
+ */
 function generate_side_length(level) {
   if (level > 10) {
     return 4;
@@ -57,13 +14,6 @@ function generate_side_length(level) {
   }
 
   return 2;
-}
-
-function level_difficulty(level) {
-  return {
-    sideLength: 3,
-    colorRange: 100,
-  };
 }
 
 function generate_target_position(sideLength) {
@@ -112,19 +62,17 @@ function generate_target_color(baseColor, currentLevel) {
 function create_circle_target_html(color) {
   const element = create_circle_html(color);
   element.addEventListener("click", () => {
-    console.log("asmadm");
-    win();
     next_level();
   });
 
   return element;
 }
 
-function create_circle_base(color) {
+function create_circle_base_html(color) {
   const element = create_circle_html(color);
   element.addEventListener("click", () => {
     wrong();
-  })
+  });
   return element;
 }
 
@@ -136,7 +84,7 @@ function create_circle_html(color) {
 
   // https://stackoverflow.com/a/14323127/12125511
   element.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
-  
+
   return element;
 }
 
@@ -157,7 +105,7 @@ function render_boxes(sideLength, randomPosition, randomColorBase, randomColorTa
       if (targetRow === row && targetCol === col) {
         element = create_circle_target_html(randomColorTarget);
       } else {
-        element = create_circle_base(randomColorBase);
+        element = create_circle_base_html(randomColorBase);
       }
 
       rowElement.appendChild(element);
@@ -166,14 +114,106 @@ function render_boxes(sideLength, randomPosition, randomColorBase, randomColorTa
   }
 }
 
+/**
+ * Score related functions
+ */
+
+function calculate_bonus() {
+  if (currentLevel === 1) {
+    return 0;
+  }
+
+  const now = Date.now();
+  const solvingTime = now - checkPointTime;
+
+  let bonus = 0;
+
+  if (solvingTime <= 3000) {
+    bonus = Math.round((3000 - solvingTime) / 10);
+  }
+
+  return bonus;
+}
+
+function add_score(scoreAdder) {
+  const basicScore = 100;
+
+  currentScore += basicScore + scoreAdder;
+  render_score();
+}
+
+function render_score() {
+  const scoreElement = document.getElementById("score");
+  scoreElement.innerText = `Score: ${currentScore}`;
+}
+
+/**
+ * Timer related functions
+ */
+
+function timer() {
+  let startTime = Date.now();
+  let interval = setInterval(function () {
+    let elapsedTime = Date.now() - startTime;
+    let timeLeft = currentTimeMs - elapsedTime;
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      clearInterval(interval);
+      end_game();
+    }
+
+    let minute = Math.floor(timeLeft / (1000 * 60));
+    if (minute < 10) {
+      minute = "0" + minute;
+    }
+    document.getElementById("minutes").innerHTML = minute;
+
+    let second = Math.floor(timeLeft / 1000);
+    if (second >= 60) {
+      second -= minute * 60;
+    }
+    if (second < 10) {
+      second = "0" + second;
+    }
+    document.getElementById("seconds").innerHTML = second;
+
+    let milli = timeLeft % 1000;
+    if (milli < 100) {
+      milli = "0" + milli;
+    }
+    if (milli < 10) {
+      milli = "0" + milli;
+    }
+    document.getElementById("millisec").innerHTML = milli;
+  }, 50);
+}
+
+/**
+ * game related functions
+ */
+
 function next_level() {
   currentLevel++;
+  currentTimeMs += 3000;
+
+  const bonus = calculate_bonus();
+
+  checkPointTime = Date.now();
+
+  // todo: get bonus points from remaining time
+  add_score(bonus);
+
+  // todo: increase remaining time
 
   start_level();
 }
 
+function wrong() {
+  currentTimeMs -= 1500;
+}
+
 function end_game() {
-   alert("waktu abis oi");
+  alert("waktu abis oi");
 }
 
 function start_level() {
@@ -192,6 +232,8 @@ function start_game() {
   currentLevel = 1;
   currentTimeMs = 30_000;
   currentScore = 0;
+
+  checkPointTime = Date.now();
 
   start_level();
 }
