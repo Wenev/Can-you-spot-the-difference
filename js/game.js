@@ -44,6 +44,9 @@ function win() {
    currentTimeMs += 3000;
 }
 
+function wrong() {
+  currentTimeMs -= 1500
+}
 function generate_side_length(level) {
   if (level > 10) {
     return 4;
@@ -110,9 +113,18 @@ function create_circle_target_html(color) {
   const element = create_circle_html(color);
   element.addEventListener("click", () => {
     console.log("asmadm");
+    win();
     next_level();
   });
 
+  return element;
+}
+
+function create_circle_base(color) {
+  const element = create_circle_html(color);
+  element.addEventListener("click", () => {
+    wrong();
+  })
   return element;
 }
 
@@ -124,7 +136,7 @@ function create_circle_html(color) {
 
   // https://stackoverflow.com/a/14323127/12125511
   element.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
-
+  
   return element;
 }
 
@@ -145,7 +157,7 @@ function render_boxes(sideLength, randomPosition, randomColorBase, randomColorTa
       if (targetRow === row && targetCol === col) {
         element = create_circle_target_html(randomColorTarget);
       } else {
-        element = create_circle_html(randomColorBase);
+        element = create_circle_base(randomColorBase);
       }
 
       rowElement.appendChild(element);
