@@ -1,65 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Leaderboard</title>
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.css"
-    />
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="image">
-      <div class="image-overlay"></div>
-    </div>
-    <div class="container">
-      <div
-        class="row col-lg-8 col-md-6 position-absolute top-50 start-50 translate-middle"
-      >
-        <div
-          class="card text-center glassmorphism-card text-white glassmorphism-card"
-        >
-          <div class="card-header">
-            <h2>Leaderboard</h2>
-          </div>
-          <div class="card-body">
-            <table class="table table-dark">
-              <thead>
-                <tr>
-                  <th scope="col" class="yellow-text">#</th>
-                  <th scope="col" class="yellow-text">Username</th>
-                  <th scope="col" class="yellow-text">Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>100</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Otto</td>
-                  <td>80</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="image">
+    <div class="image-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="row col-lg-8 col-md-6 position-absolute top-50 start-50 translate-middle">
+      <div class="card text-center glassmorphism-card text-white glassmorphism-card">
+        <div class="card-header">
+          <h2>Leaderboard</h2>
         </div>
-        <div class="container d-flex justify-content-center mt-3">
-          <div class="mx-1">
-            <a href="#" class="btn btn-warning" onclick="go_home()">Mulai Bermain</a>
-          </div>
-          <div class="mx-1">
-            <a href="#" class="btn btn-danger">Lihat Leaderboard</a>
-          </div>
+        <div class="card-body">
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="yellow-text">#</th>
+                <th scope="col" class="yellow-text">Username</th>
+                <th scope="col" class="yellow-text">Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container d-flex justify-content-center mt-3">
+        <div class="mx-1">
+          <a href="#" class="btn btn-warning" id="homeButton">Mulai Bermain</a>
+        </div>
+        <div class="mx-1">
+          <a href="#" class="btn btn-danger" id="resetButton">Reset Leaderboard</a>
         </div>
       </div>
     </div>
-    <script src="js/scoreboard.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-  </body>
+  </div>
+  <script src="js/leaderboard.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
 </html>
