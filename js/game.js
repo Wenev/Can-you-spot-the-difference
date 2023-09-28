@@ -178,21 +178,20 @@ function render_score() {
 
 function timer() {
   let startTime = Date.now();
-  
+
   let interval = setInterval(function () {
     let elapsedTime = Date.now() - startTime;
     let timeLeft = currentTimeMs - elapsedTime;
+
     if (timeLeft <= 0) {
       timeLeft = 0;
-      clearInterval(interval);
-      end_game();
     }
 
     let minute = Math.floor(timeLeft / (1000 * 60));
     if (minute < 10) {
       minute = "0" + minute;
     }
-    
+
     document.getElementById("minutes").innerHTML = minute;
 
     let second = Math.floor(timeLeft / 1000);
@@ -202,7 +201,7 @@ function timer() {
     if (second < 10) {
       second = "0" + second;
     }
-    
+
     document.getElementById("seconds").innerHTML = second;
 
     let milli = timeLeft % 1000;
@@ -212,8 +211,15 @@ function timer() {
     if (milli < 10) {
       milli = "0" + milli;
     }
-    
+
     document.getElementById("millisec").innerHTML = milli;
+
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+      setTimeout(() => {
+        end_game();
+      }, 50);
+    }
   }, 50);
 }
 
@@ -229,10 +235,7 @@ function next_level() {
 
   checkPointTime = Date.now();
 
-  // todo: get bonus points from remaining time
   add_score(bonus);
-
-  // todo: increase remaining time
 
   start_level();
 }
@@ -242,7 +245,11 @@ function wrong() {
 }
 
 function end_game() {
-  setTimeout(window.location.href = "leaderboard.html", 1000);
+  // set last score
+  localStorage.setItem("current-score", currentScore);
+
+  alert("Waktu habis");
+  window.location.href = "leaderboard.html";
 }
 
 function start_level() {
