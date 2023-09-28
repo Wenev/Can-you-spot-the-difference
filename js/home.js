@@ -9,10 +9,16 @@ function render_home() {}
 // get username and start the game
 // if username not found, set alert
 // if username found, save username into localstorage['playerName']
-function handle_username() {}
+function handle_username() {
+    var fieldValue = document.getElementById('username').value;
+    localStorage.setItem('username', fieldValue);
+}
 
 // switches game into game mode
-function start_game() {}
+function start_game() {
+    handle_username();
+    window.location.href = "game.html";
+}
 
 //? switches into leaderboard page
 function go_leaderboard() {}

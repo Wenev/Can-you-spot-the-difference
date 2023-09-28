@@ -236,7 +236,10 @@ function wrong() {
 }
 
 function end_game() {
-  alert("waktu abis oi");
+  const username = localStorage.getItem("username");
+  localStorage.setItem(username, currentScore);
+  localStorage.removeItem("username");
+  setTimeout(window.location.href = "leaderboard.html", 1000);
 }
 
 function start_level() {

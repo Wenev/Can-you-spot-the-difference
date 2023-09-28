@@ -6,7 +6,9 @@ function update_scoreboard() {}
 
 // renders scoreboard from game mode
 // with get current scoreboard from localstorage
-function render_scoreboard() {}
+function render_scoreboard() {
+    
+}
 
 // resets scoreboard and rerenders it
 // before resetting, make sure to prompt user
