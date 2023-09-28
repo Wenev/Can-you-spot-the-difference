@@ -16,7 +16,7 @@ function submitUsername(e) {
   if (!username) {
     alert("Mohon isi username anda");
   } else {
-    localStorage.setItem("username", username);
+    localStorage.setItem("current-username", username);
 
     // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
     // redirect to game page
@@ -24,5 +24,7 @@ function submitUsername(e) {
   }
 }
 
-// redirect user after submiting input
+const usernameForm = document.getElementById("usernameForm");
 usernameForm.addEventListener("submit", submitUsername);
+
+reset_username_db();
