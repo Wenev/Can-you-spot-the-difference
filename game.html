@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Leaderboard</title>
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.css"
-    />
-    <link href="css/style.css" rel="stylesheet" />
-  </head>
-  <body onload="timer()">
-    <div class="image">
-      <div class="image-overlay"></div>
-    </div>
-    <div class="container">
-      <div
-        class="row col-lg-8 col-md-6 position-absolute top-50 start-50 translate-middle"
-        style="width: 500px !important; height: 500px !important"
-      >
-        <div
-          class="card text-center text-white glassmorphism-card"
-        >
-          <div class="card-header">
-            <div class="timer">
-              <span id="minutes"></span>
-              <span>:</span>
-              <span id="seconds"></span>
-              <span>:</span>
-              <span id="millisec"></span>
-            </div>
-            <div class="level">
-              <span>Level: </span>
-              <span id="level"></span>
-            </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body onload="timer()">
+  <div class="image">
+    <div class="image-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="row col-lg-8 col-md-6 position-absolute top-50 start-50 translate-middle" style="width: 500px !important; height: 500px !important">
+      <div class="card text-center text-white glassmorphism-card">
+        <div class="card-header">
+          <div class="timer">
+            <span id="minutes"></span>
+            <span>:</span>
+            <span id="seconds"></span>
+            <span>:</span>
+            <span id="millisec"></span>
           </div>
-          <div class="card-body">
-            <div class="game">
-              <div id="circleContainer"></div>
+          <div class="level">
+            <span>Level: </span>
+            <span id="level"></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="game">
+            <div id="circleContainer">
             </div>
           </div>
-          <div class="card-footer">
-            <div id="score">Score: 0</div>
-          </div>
+        </div>
+        <div class="card-footer">
+          <div id="score">Score: 0</div>
         </div>
       </div>
     </div>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script src="js/game.js"></script>
-  </body>
+  </div>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  <script src="js/game.js"></script>
+</body>
+
 </html>

@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: 'Mooli', sans-serif;
+  font-family: "Mooli", sans-serif;
 }
 
 .circle {
@@ -45,4 +45,9 @@ body {
 
 .yellow-text {
   color: #ffc107 !important;
+}
+
+#leaderboard-container {
+  overflow-y: auto;
+  max-height: 500px;
 }

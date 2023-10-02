@@ -26,14 +26,14 @@ function generate_target_position(sideLength) {
   const randomRow = Math.floor(Math.random() * sideLength);
   const randomCol = Math.floor(Math.random() * sideLength);
 
-  return [randomRow, randomCol];
+  return [randomRow, randomCol]; // [1,1]
 }
 
 function generate_base_color() {
   // generate random color
-  const red = Math.floor(Math.random() * 255 + 1);
-  const green = Math.floor(Math.random() * 255 + 1);
-  const blue = Math.floor(Math.random() * 255 + 1);
+  const red = Math.floor(Math.random() * 255 + 1); // 0 -255
+  const green = Math.floor(Math.random() * 255 + 1); // 0 -255
+  const blue = Math.floor(Math.random() * 255 + 1); // 0 -255
 
   return [red, green, blue];
 }
@@ -241,7 +241,7 @@ function next_level() {
 }
 
 function wrong() {
-  currentTimeMs -= 1500;
+  currentTimeMs -= 5000;
 }
 
 function end_game() {
@@ -258,7 +258,7 @@ function start_level() {
   const randomPosition = generate_target_position(sideLength);
 
   const randomColorBase = generate_base_color();
-  const randomColorTarget = generate_target_color(randomColorBase, 100);
+  const randomColorTarget = generate_target_color(randomColorBase);
   console.log(randomColorBase, randomColorTarget, randomPosition);
 
   render_boxes(sideLength, randomPosition, randomColorBase, randomColorTarget);

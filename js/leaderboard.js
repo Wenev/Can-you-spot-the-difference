@@ -10,17 +10,19 @@ const DEFAULT_LEADERBOARD = [
  * localStorage related functions
  */
 
+// get username from localStorage from user input at index.js
 function get_username_localStorage() {
   const username = localStorage.getItem("current-username");
   return username;
 }
 
+// get score from localstorage from game.js
 function get_score_localStorage() {
   const score = localStorage.getItem("current-score");
   return Number(score);
 }
 
-// with get username and score from localStorage
+// get username and score from localStorage
 function get_username_score_localStorage() {
   const username = get_username_localStorage();
   const score = get_score_localStorage();
@@ -68,9 +70,17 @@ function update_leaderboard(lastUsername, lastScore) {
 
   let index = 0;
 
+  let duplicateUsername = false;
+  let duplicateScore;
+
   for (const perLeaderboard of leaderboard) {
     // score from highest to lowest
-    const { score } = perLeaderboard;
+    const { username, score } = perLeaderboard;
+
+    if (username === lastUsername) {
+      duplicateUsername = username;
+      duplicateScore = score;
+    }
 
     if (score > lastScore) {
       index++;
@@ -85,7 +95,13 @@ function update_leaderboard(lastUsername, lastScore) {
   };
 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-  leaderboard.splice(index, 0, newData);
+  if (duplicateUsername) {
+    if (lastScore > duplicateScore) {
+      leaderboard.splice(index, 1, newData);
+    }
+  } else {
+    leaderboard.splice(index, 0, newData);
+  }
 
   update_leaderboard_localStorage(leaderboard);
 }
